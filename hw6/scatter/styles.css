@@ -16,7 +16,7 @@
 }
 
 circle {
-  fill: cornflowerblue;
+  fill: green;
 }
 
 .voronoi {
@@ -38,6 +38,7 @@ body {
   padding: 0.6em 1em;
   background: #fff;
   text-align: center;
+  color: #32CD32;
   line-height: 1.4em;
   font-size: 0.9em;
   border: 1px solid #ddd;

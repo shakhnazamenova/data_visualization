@@ -48,8 +48,6 @@ async function drawScatter() {
 
   const drawDots = (dataset) => {
 
-    // 5. Draw data
-
     const dots = bounds.selectAll("circle")
       .data(dataset, d => d[0])
 
@@ -63,6 +61,7 @@ async function drawScatter() {
     const oldDots = dots.exit()
         .remove()
   }
+
   drawDots(dataset)
 
   const delaunay = d3.Delaunay.from(
@@ -117,12 +116,12 @@ async function drawScatter() {
     .on("mouseleave", onMouseLeave)
 
   const tooltip = d3.select("#tooltip")
-  function onMouseEnter(datum, index) {
+  function onMouseEnter(datum) {
 
     const dayDot = bounds.append("circle")
         .attr("class", "tooltipDot")
-        .attr("cx", d => xScale(xAccessor(datum)))
-        .attr("cy", d => yScale(yAccessor(datum)))
+        .attr("cx", xScale(xAccessor(datum)))
+        .attr("cy", yScale(yAccessor(datum)))
         .attr("r", 7)
         .style("fill", "maroon")
         .style("pointer-events", "none")
@@ -148,8 +147,7 @@ async function drawScatter() {
     tooltip.style("opacity", 1)
 
   }
-  function onMouseLeave(datum, index) {
-    tooltip.style("opacity", 0)
+  function onMouseLeave() {
     d3.selectAll(".tooltipDot").remove()
   }
 }
